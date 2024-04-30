@@ -12,6 +12,8 @@ import '../services/utils/validators.dart';
 import '../widgetsFromChatApp/password_input_field.dart';
 import '../widgetsFromChatApp/rouded_action_button.dart';
 import '../widgetsFromChatApp/simple_input_wiget.dart';
+import 'dashboard.dart';
+import 'login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
