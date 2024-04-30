@@ -96,6 +96,7 @@
 // }
 
 import 'package:another_stepper/another_stepper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -131,60 +132,64 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AnotherStepper(
-              stepperList: List<StepperData>.generate(
-                stepperData.length,
-                (index) => StepperData(
-                  iconWidget: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: index <= activeIndex ? Colors.green : Colors.grey,
+
+            Padding(
+              padding: const EdgeInsets.only(top:0, left: 50),
+              child: AnotherStepper(
+                stepperList: List<StepperData>.generate(
+                  stepperData.length,
+                  (index) => StepperData(
+                    iconWidget: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: index <= activeIndex ? Colors.green : Colors.grey,
+                      ),
                     ),
-                  ),
-                  title: StepperText(
-                    stepperData[index]["title"]!,
-                    textStyle: TextStyle(
-                      color: index == activeIndex ? Colors.black : Colors.grey,
+                    title: StepperText(
+                      stepperData[index]["title"]!,
+                      textStyle: TextStyle(
+                        color: index == activeIndex ? Colors.black : Colors.grey,
+                      ),
                     ),
-                  ),
-                  subtitle: StepperText(
-                    stepperData[index]["subTitle"]!,
-                    textStyle: TextStyle(
-                      color: index == activeIndex ? Colors.black : Colors.grey,
+                    subtitle: StepperText(
+                      stepperData[index]["subTitle"]!,
+                      textStyle: TextStyle(
+                        color: index == activeIndex ? Colors.black : Colors.grey,
+                      ),
                     ),
                   ),
                 ),
+                stepperDirection: Axis.vertical,
+                iconWidth: 40,
+                iconHeight: 40,
+                activeBarColor: Colors.green,
+                inActiveBarColor: Colors.grey,
+                activeIndex: activeIndex,
+                barThickness: 8,
               ),
-              stepperDirection: Axis.vertical,
-              iconWidth: 24,
-              iconHeight: 24,
-              activeBarColor: Colors.green,
-              inActiveBarColor: Colors.grey,
-              activeIndex: activeIndex,
-              barThickness: 8,
             ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () => changeStepperIndex(0),
-                  child: const Text('Step 1'),
-                ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () => changeStepperIndex(1),
-                  child: const Text('Step 2'),
-                ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () => changeStepperIndex(2),
-                  child: const Text('Step 3'),
-                ),
-              ],
-            ),
+            //const SizedBox(height: 20),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     ElevatedButton(
+            //       onPressed: () => changeStepperIndex(0),
+            //       child: const Text('Step 1'),
+            //     ),
+            //     const SizedBox(width: 20),
+            //     ElevatedButton(
+            //       onPressed: () => changeStepperIndex(1),
+            //       child: const Text('Step 2'),
+            //     ),
+            //     const SizedBox(width: 20),
+            //     ElevatedButton(
+            //       onPressed: () => changeStepperIndex(2),
+            //       child: const Text('Step 3'),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

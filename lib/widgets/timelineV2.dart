@@ -66,9 +66,6 @@ class _TimelineV2State extends State<TimelineV2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
         body: Column(
           children: [
             Padding(
@@ -80,7 +77,7 @@ class _TimelineV2State extends State<TimelineV2> {
                 iconHeight: 40,
                 activeBarColor: Colors.green,
                 inActiveBarColor: Colors.grey,
-                inverted: true,
+                inverted: false,
                 verticalGap: 30,
                 activeIndex: 1,
                 barThickness: 8,

@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: Center(
         child: _counter % 2 == 0? Home() : TimelineV2(),
