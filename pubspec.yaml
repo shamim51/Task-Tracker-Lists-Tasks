@@ -47,6 +47,7 @@ dependencies:
   rename_app: ^1.3.2
   timelines: ^0.1.0
   another_stepper: ^1.2.2
+  random_avatar: ^0.0.8
 
 
 dev_dependencies:

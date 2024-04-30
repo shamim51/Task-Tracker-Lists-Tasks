@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:random_avatar/random_avatar.dart';
 
 import '../const_config/color_config.dart';
 import '../const_config/text_config.dart';
