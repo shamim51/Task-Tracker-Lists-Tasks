@@ -10,103 +10,52 @@ class TimelineV2 extends StatefulWidget {
 
 class _TimelineV2State extends State<TimelineV2> {
   List<StepperData> stepperData = [
-    // StepperData(
-    //     title: StepperText(
-    //       "Order Placed",
-    //       textStyle: const TextStyle(
-    //         color: Colors.grey,
-    //       ),
-    //     ),
-    //     subtitle: StepperText("Your order has been placed"),
-    //     iconWidget: Container(
-    //       padding: const EdgeInsets.all(8),
-    //       decoration: const BoxDecoration(
-    //           color: Colors.green,
-    //           borderRadius: BorderRadius.all(Radius.circular(30))),
-    //     )),
-    // StepperData(
-    //     title: StepperText("Preparing"),
-    //     subtitle: StepperText("Your order is being prepared"),
-    //     iconWidget: Container(
-    //       padding: const EdgeInsets.all(8),
-    //       decoration: const BoxDecoration(
-    //           color: Colors.green,
-    //           borderRadius: BorderRadius.all(Radius.circular(30))),
-    //       child: const Icon(Icons.looks_two, color: Colors.white),
-    //     )),
-    // StepperData(
-    //     title: StepperText("On the way"),
-    //     subtitle: StepperText(
-    //         "Our delivery executive is on the way to deliver your item"),
-    //     iconWidget: Container(
-    //       padding: const EdgeInsets.all(8),
-    //       decoration: const BoxDecoration(
-    //           color: Colors.green,
-    //           borderRadius: BorderRadius.all(Radius.circular(30))),
-    //       child: const Icon(Icons.looks_3, color: Colors.white),
-    //     )),
+    StepperData(
+        title: StepperText(
+          "Order Placed",
+          textStyle: const TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+        subtitle: StepperText("Your order has been placed"),
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+        )),
+    StepperData(
+        title: StepperText("Preparing"),
+        subtitle: StepperText("Your order is being prepared"),
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: const Icon(Icons.looks_two, color: Colors.white),
+        )),
+    StepperData(
+        title: StepperText("On the way"),
+        subtitle: StepperText(
+            "Our delivery executive is on the way to deliver your item"),
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: const Icon(Icons.looks_3, color: Colors.white),
+        )),
 
-    // StepperData(
-    //     title: StepperText("Delivered",
-    //         textStyle: const TextStyle(color: Colors.grey)),
-    //     iconWidget: Container(
-    //       padding: const EdgeInsets.all(8),
-    //       decoration: const BoxDecoration(
-    //           color: Colors.redAccent,
-    //           borderRadius: BorderRadius.all(Radius.circular(30))),
-    //     )),
     StepperData(
-      title: StepperText(
-        "Order Placed",
-        textStyle: const TextStyle(
-          color: Colors.grey,
-        ),
-      ),
-      subtitle: StepperText("Your order has been placed"),
-      iconWidget: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: const BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-        ),
-      ),
-    ),
-    StepperData(
-      title: StepperText("Preparing"),
-      subtitle: StepperText("Your order is being prepared"),
-      iconWidget: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: const BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-        ),
-      ),
-    ),
-    StepperData(
-      title: StepperText("On the way"),
-      subtitle: StepperText(
-          "Our delivery executive is on the way to deliver your item"),
-      iconWidget: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: const BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-        ),
-      ),
-    ),
-    StepperData(
-      title: StepperText(
-        "Delivered",
-        textStyle: const TextStyle(color: Colors.grey),
-      ),
-      iconWidget: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: const BoxDecoration(
-          color: Colors.redAccent,
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-        ),
-      ),
-    ),
+        title: StepperText("Delivered",
+            textStyle: const TextStyle(color: Colors.grey)),
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+              color: Colors.redAccent,
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+        )),
+
   ];
 
   @override
