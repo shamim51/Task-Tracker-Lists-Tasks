@@ -31,6 +31,11 @@ class _LoginPageState extends State<LoginPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text("My Tasks"),
+        centerTitle: true,
+      ),
       backgroundColor: MyColor.scaffoldColor,
       body: Center(
         child: Padding(
@@ -42,12 +47,12 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text("Welcome to", style: TextDesign().dashboardWidgetTitle),
-                  Text("Chat META", style: TextDesign().popHead.copyWith(color: MyColor.primary, fontSize: 22)),
-                  const SizedBox(height: 10),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
+                  // Text("Welcome to", style: TextDesign().dashboardWidgetTitle),
+                  // Text("Chat META", style: TextDesign().popHead.copyWith(color: MyColor.primary, fontSize: 22)),
+                  //const SizedBox(height: 10),
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(color: MyColor.white, borderRadius: BorderRadius.circular(10)),

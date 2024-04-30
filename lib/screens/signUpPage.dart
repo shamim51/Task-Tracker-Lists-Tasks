@@ -57,6 +57,11 @@ class _SignUpState extends State<SignUp> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text("My Tasks"),
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(

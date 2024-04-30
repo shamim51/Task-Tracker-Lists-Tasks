@@ -12,21 +12,22 @@ class _TimelineV2State extends State<TimelineV2> {
   List<StepperData> stepperData = [
     StepperData(
         title: StepperText(
-          "Order Placed",
-          textStyle: const TextStyle(
-            color: Colors.grey,
-          ),
+          "Task 1",
+          // textStyle: const TextStyle(
+          //   color: Colors.grey,
+          // ),
         ),
-        subtitle: StepperText("Your order has been placed"),
+        //subtitle: StepperText("Your order has been placed"),
         iconWidget: Container(
           padding: const EdgeInsets.all(8),
           decoration: const BoxDecoration(
               color: Colors.green,
               borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: const Icon(Icons.looks_one, color: Colors.white,),
         )),
     StepperData(
-        title: StepperText("Preparing"),
-        subtitle: StepperText("Your order is being prepared"),
+        title: StepperText("Task 2"),
+        //subtitle: StepperText(" "),
         iconWidget: Container(
           padding: const EdgeInsets.all(8),
           decoration: const BoxDecoration(
@@ -35,9 +36,8 @@ class _TimelineV2State extends State<TimelineV2> {
           child: const Icon(Icons.looks_two, color: Colors.white),
         )),
     StepperData(
-        title: StepperText("On the way"),
-        subtitle: StepperText(
-            "Our delivery executive is on the way to deliver your item"),
+        title: StepperText("Task 3"),
+        //subtitle: StepperText(" "),
         iconWidget: Container(
           padding: const EdgeInsets.all(8),
           decoration: const BoxDecoration(
@@ -47,13 +47,15 @@ class _TimelineV2State extends State<TimelineV2> {
         )),
 
     StepperData(
-        title: StepperText("Delivered",
-            textStyle: const TextStyle(color: Colors.grey)),
+        title: StepperText("Task 4",
+            //textStyle: const TextStyle(color: Colors.grey)
+        ),
         iconWidget: Container(
           padding: const EdgeInsets.all(8),
           decoration: const BoxDecoration(
-              color: Colors.redAccent,
+              color: Colors.green,
               borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: const Icon(Icons.looks_4, color: Colors.white),
         )),
 
   ];
@@ -69,7 +71,7 @@ class _TimelineV2State extends State<TimelineV2> {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20),
+              padding: const EdgeInsets.only(top: 20, left: 100),
               child: AnotherStepper(
                 stepperList: stepperData,
                 stepperDirection: Axis.vertical,
@@ -79,7 +81,7 @@ class _TimelineV2State extends State<TimelineV2> {
                 inActiveBarColor: Colors.grey,
                 inverted: false,
                 verticalGap: 30,
-                activeIndex: 1,
+                activeIndex: 3,
                 barThickness: 8,
               ),
             ),
