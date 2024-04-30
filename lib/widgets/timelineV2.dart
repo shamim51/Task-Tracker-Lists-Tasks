@@ -1,6 +1,9 @@
 import 'package:another_stepper/another_stepper.dart';
 import 'package:flutter/material.dart';
 
+import 'package:lottie/lottie.dart';
+
+
 class TimelineV2 extends StatefulWidget {
   const TimelineV2({super.key});
 
@@ -68,8 +71,17 @@ class _TimelineV2State extends State<TimelineV2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         body: Column(
+
           children: [
+           Lottie.asset(
+             "animations/6.json",
+               height: 200,
+               width: 300,
+               repeat: true,
+               fit: BoxFit.cover,
+           ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 100),
               child: AnotherStepper(
@@ -81,7 +93,7 @@ class _TimelineV2State extends State<TimelineV2> {
                 inActiveBarColor: Colors.grey,
                 inverted: false,
                 verticalGap: 30,
-                activeIndex: 3,
+                activeIndex: 2,
                 barThickness: 8,
               ),
             ),

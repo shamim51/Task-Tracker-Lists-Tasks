@@ -40,6 +40,7 @@ class _DashboardState extends State<Dashboard> {
       ),
 
       body: TimelineV2(),
+      
       floatingActionButton: FloatingActionButton(
         onPressed: (){
 
