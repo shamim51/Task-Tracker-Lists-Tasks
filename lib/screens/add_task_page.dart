@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:task_tracker/services/deleteTaskFromFireStore.dart';
 import 'package:task_tracker/services/save_task_to_firebase.dart';
+import 'package:task_tracker/services/setTaskAsDone.dart';
 
 import '../models/task_model.dart';
 
@@ -105,6 +106,10 @@ import '../models/task_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddTaskDialog extends StatefulWidget {
+
+
+  const AddTaskDialog({Key? key}) : super(key: key);
+
   @override
   _AddTaskDialogState createState() => _AddTaskDialogState();
 }
@@ -114,12 +119,11 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   User? user = FirebaseAuth.instance.currentUser;
 
-  bool _isDeleteMode = false;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Add Task'),
+      title: Text('Add / Delete Task'),
       content: TextField(
         controller: _titleController,
         decoration: InputDecoration(labelText: 'Task Title'),
@@ -141,8 +145,18 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
             addTaskToFirestore(user!.uid, task);
             Navigator.of(context).pop(); // Close the dialog
+
           },
           child: Text('Save'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            // Set the subtitle of the task to "done"
+            String title = _titleController.text;
+            SetTaskAsDone.setTaskSubtitleToDone(user!.uid, title);
+            Navigator.of(context).pop(); // Close the dialog
+          },
+          child: Text('Done'),
         ),
         ElevatedButton(
           onPressed: () {

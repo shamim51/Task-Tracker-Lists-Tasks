@@ -5,7 +5,8 @@ import 'package:task_tracker/widgets/timelineV2.dart';
 import 'add_task_page.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+  //const Dashboard({super.key});
+  const Dashboard({Key? key}) : super(key: key);
 
 
   @override
@@ -43,13 +44,15 @@ class _DashboardState extends State<Dashboard> {
             context: context,
             builder: (BuildContext context) {
               return AddTaskDialog();
+                },
+              );
             },
-          );
-        },
-        backgroundColor: Colors.cyan,
-        foregroundColor: Colors.white,
-        child: const Icon(Icons.settings),
-      ),
-    );
+              backgroundColor: Colors.cyan,
+              foregroundColor: Colors.white,
+              child: const Icon(Icons.settings),
+        ),
+
+      );
+
   }
 }

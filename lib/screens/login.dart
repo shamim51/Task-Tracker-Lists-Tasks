@@ -32,7 +32,8 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.cyan,
+        foregroundColor: Colors.white,
         title: Text("My Tasks"),
         centerTitle: true,
       ),
@@ -93,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                                         context: context,
                                         title: "Successful",
                                         height: 200,
-                                        message: "Welcome to Chat META",
+                                        message: "Welcome to My Task",
                                         failureMessage: false
                                     );
                                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const Dashboard()), (route) => false);

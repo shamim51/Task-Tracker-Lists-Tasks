@@ -1,5 +1,6 @@
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:task_tracker/services/utils/get_user_id.dart';
@@ -8,13 +9,25 @@ class FetchTaskFromFireStore {
   static Future<List<StepperData>> getTasks() async {
     List<StepperData> stepperData = [];
 
+
+
+
     try {
-      // Retrieve tasks associated with the current user from Firestore
-      String userId = getCurrentUserId(); // Assuming you have a function to get current user ID
+      String userId="user1";
+      String userName = " ";
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+         userId = user.uid;
+      }
+      print("================================================");
+      print("userId:" );
+      print(userId);
+
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('tasks')
           .where('userId', isEqualTo: userId)
           .get();
+
 
       // Populate stepperData list with the fetched tasks
       querySnapshot.docs.forEach((DocumentSnapshot document) {
@@ -50,7 +63,6 @@ class FetchTaskFromFireStore {
         else {
           iconWidget = Container();
           print("i am in else");
-// Default empty container if title doesn't match
         }
 
         // Add task data to stepperData list
@@ -77,5 +89,18 @@ class FetchTaskFromFireStore {
     }
 
     return stepperData;
+  }
+  static Stream<List<StepperData>> getTasksStream() {
+    return FirebaseFirestore.instance.collection('tasks')
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) {
+      final title = doc['title'] as String; // Replace 'title' with your field name for title
+      final subtitle = doc['subtitle'] as String; // Replace 'subtitle' with your field name for subtitle
+      return StepperData(
+        title: StepperText(title),
+        subtitle: StepperText(subtitle),
+        // Add other fields as needed
+      );
+    }).toList());
   }
 }

@@ -58,7 +58,8 @@ class _SignUpState extends State<SignUp> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.cyan,
+        foregroundColor: Colors.white,
         title: Text("My Tasks"),
         centerTitle: true,
       ),
@@ -73,8 +74,8 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 30,
                 ),
-                Text("Welcome to", style: TextDesign().dashboardWidgetTitle),
-                Text("Chat META", style: TextDesign().popHead.copyWith(color: MyColor.primary, fontSize: 22)),
+                // Text("Welcome to", style: TextDesign().dashboardWidgetTitle),
+                // Text("Chat META", style: TextDesign().popHead.copyWith(color: MyColor.primary, fontSize: 22)),
                 const SizedBox(height: 10),
                 Container(
                     height: size.height * 0.25,
@@ -141,7 +142,7 @@ class _SignUpState extends State<SignUp> {
                                       context: context,
                                       title: "Successful",
                                       height: 200,
-                                      message: "Welcome to Chat META",
+                                      message: "Welcome to My Tasks",
                                       failureMessage: false
                                   );
                                 }
