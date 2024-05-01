@@ -48,6 +48,7 @@ dependencies:
   timelines: ^0.1.0
   another_stepper: ^1.2.2
   random_avatar: ^0.0.8
+  flutter_spinkit: ^5.2.1
 
   lottie: ^3.1.0
 

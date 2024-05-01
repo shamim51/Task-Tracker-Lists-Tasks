@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:task_tracker/services/logout.dart';
 import 'package:task_tracker/widgets/timelineV2.dart';
+
+import 'add_task_page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -10,14 +13,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +29,7 @@ class _DashboardState extends State<Dashboard> {
               color: Colors.white,
             ),
             onPressed: () {
+              signOut(context);
             },
           )
         ],
@@ -43,11 +39,16 @@ class _DashboardState extends State<Dashboard> {
       
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AddTaskDialog();
+            },
+          );
         },
         backgroundColor: Colors.cyan,
         foregroundColor: Colors.white,
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.settings),
       ),
     );
   }

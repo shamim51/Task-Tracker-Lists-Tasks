@@ -1,7 +1,9 @@
 import 'package:another_stepper/another_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:lottie/lottie.dart';
+import 'package:task_tracker/services/fetch_task_from_firebase.dart';
 
 
 class TimelineV2 extends StatefulWidget {
@@ -12,6 +14,22 @@ class TimelineV2 extends StatefulWidget {
 }
 
 class _TimelineV2State extends State<TimelineV2> {
+
+  List<StepperData> stepperData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Call getTasks to fetch tasks from Firestore
+    _fetchTasks();
+  }
+  Future<void> _fetchTasks() async {
+    List<StepperData> tasks = await FetchTaskFromFireStore.getTasks();
+    setState(() {
+      stepperData = tasks;
+    });
+  }
+  /*
   List<StepperData> stepperData = [
     StepperData(
         title: StepperText(
@@ -51,7 +69,7 @@ class _TimelineV2State extends State<TimelineV2> {
 
     StepperData(
         title: StepperText("Task 4",
-            //textStyle: const TextStyle(color: Colors.grey)
+            textStyle: const TextStyle(color: Colors.grey)
         ),
         iconWidget: Container(
           padding: const EdgeInsets.all(8),
@@ -60,44 +78,48 @@ class _TimelineV2State extends State<TimelineV2> {
               borderRadius: BorderRadius.all(Radius.circular(30))),
           child: const Icon(Icons.looks_4, color: Colors.white),
         )),
+        iconWidget: Stack(
+              children: [
+                  Center(child: Icon(Icons.history, color: Colors.green, size: 40,),),
+                  Center(child: SpinKitPulse(color: Colors.green),)
+                ],
+                ),
+    ),
 
-  ];
+  ];*/
 
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
-        body: Column(
-
-          children: [
-           Lottie.asset(
-             "animations/6.json",
-               height: 200,
-               width: 300,
-               repeat: true,
-               fit: BoxFit.cover,
-           ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 100),
-              child: AnotherStepper(
-                stepperList: stepperData,
-                stepperDirection: Axis.vertical,
-                iconWidth: 40,
-                iconHeight: 40,
-                activeBarColor: Colors.green,
-                inActiveBarColor: Colors.grey,
-                inverted: false,
-                verticalGap: 30,
-                activeIndex: 2,
-                barThickness: 8,
+        body: Expanded(
+          child: Column(
+          
+            children: [
+              SizedBox(
+                height: 50,
               ),
-            ),
-          ],
+              Center(
+                child: SpinKitPouringHourGlass(color: Colors.black,size: 100,),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 100),
+                child: AnotherStepper(
+                  stepperList: stepperData,
+                  stepperDirection: Axis.vertical,
+                  iconWidth: 40,
+                  iconHeight: 40,
+                  activeBarColor: Colors.green,
+                  inActiveBarColor: Colors.grey,
+                  inverted: false,
+                  verticalGap: 30,
+                  activeIndex: 1,
+                  barThickness: 8,
+                ),
+              ),
+            ],
+          ),
         ),
       );
   }

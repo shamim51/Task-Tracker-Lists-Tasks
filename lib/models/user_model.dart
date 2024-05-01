@@ -12,26 +12,26 @@ class UserData {
   String? name;
   String? uuid;
   String? email;
-  List<dynamic>? myChats;
+  //List<dynamic>? myChats;
 
   UserData({
     this.name,
     this.uuid,
     this.email,
-    this.myChats,
+    //this.myChats,
   });
 
   factory UserData.fromMap(Map<String, dynamic> json) => UserData(
     name: json["name"],
     uuid: json["uuid"],
     email: json["email"],
-    myChats: json["my_chats"] == null ? [] : List<dynamic>.from(json["my_chats"]!.map((x) => x)),
+    //myChats: json["my_chats"] == null ? [] : List<dynamic>.from(json["my_chats"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toMap() => {
     "name": name,
     "uuid": uuid,
     "email": email,
-    "my_chats": myChats == null ? [] : List<dynamic>.from(myChats!.map((x) => x)),
+    //"my_chats": myChats == null ? [] : List<dynamic>.from(myChats!.map((x) => x)),
   };
 }
