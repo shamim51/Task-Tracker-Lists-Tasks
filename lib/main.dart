@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
              }
              else
              {
-               return const SignUp();
+               return const Dashboard();
              }
            },
          )

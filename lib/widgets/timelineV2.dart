@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:another_stepper/another_stepper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -17,24 +18,87 @@ class TimelineV2 extends StatefulWidget {
 
 class _TimelineV2State extends State<TimelineV2> {
 
+  int lastDone = -1;
+
   late StreamSubscription<List<StepperData>> _taskSubscription;
 
   List<StepperData> stepperData = [];
+
+  //int last_done = 0;
 
   @override
   void initState() {
     super.initState();
     // Call getTasks to fetch tasks from Firestore
-    _taskSubscription = listenToTasks();
+    //_taskSubscription = listenToTasks();
     _fetchTasks();
+    _setUpFirestoreListener();
   }
+
 
   Future<void> _fetchTasks() async {
     List<StepperData> tasks = await FetchTaskFromFireStore.getTasks();
     setState(() {
       stepperData = tasks;
+      lastDone = getLastDoneTaskIndex(stepperData);
+
+      StepperData firstNotDoneTask = stepperData[lastDone+1];
+
+      // Modify its icon widget
+      StepperData modifiedTask = StepperData(
+        title: firstNotDoneTask.title,
+        subtitle: firstNotDoneTask.subtitle,
+        iconWidget: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+          child: Stack(
+            children: [
+              Center(child: Icon(Icons.task, color: Colors.grey, size: 20)),
+              Center(child: SpinKitSpinningLines(color: Colors.white, size: 40)),
+            ],
+          ),
+        ),
+      );
+
+      stepperData[lastDone+1] = modifiedTask;
+
     });
   }
+
+  int getLastDoneTaskIndex(List<StepperData> stepperData) {
+    for (int i = stepperData.length - 1; i >= 0; i--) {
+      if (stepperData[i].subtitle?.text == 'done') {
+        return i;
+      }
+    }
+    // If no "done" task found, return -1
+    return -1;
+  }
+
+  //int last_done = getLastDoneTaskIndex(stepperData);
+
+  // FirebaseFirestore.instance.collection('your_collection').snapshots().listen((snapshot) {
+  //   _fetchTasks();
+  // }
+
+
+
+  /*
+  void _fetchTasks() {
+    FetchTaskFromFireStore.getTasks().then((List<StepperData> tasks) {
+      setState(() {
+        stepperData = tasks;
+      });
+    }).catchError((error) {
+      // Handle error
+      print('Error fetching tasks: $error');
+    });
+  }*/
+
+
   @override
   void dispose() {
     // Cancel the stream subscription when the widget is disposed
@@ -43,11 +107,21 @@ class _TimelineV2State extends State<TimelineV2> {
   }
 
   // Function to listen to changes in Firestore and update the UI
-  StreamSubscription<List<StepperData>> listenToTasks() {
-    return FetchTaskFromFireStore.getTasksStream().listen((tasks) {
-      setState(() {
-        stepperData = tasks;
-      });
+  // StreamSubscription<List<StepperData>> listenToTasks() {
+  //   return FetchTaskFromFireStore.getTasksStream().listen((tasks) {
+  //     setState(() {
+  //       stepperData = tasks;
+  //     });
+  //   });
+  // }
+
+  void _setUpFirestoreListener() {
+    FirebaseFirestore.instance.collection('tasks').snapshots().listen((snapshot) {
+      //_fetchTasks(); // Fetch tasks whenever there's a change in Firestore
+      _fetchTasks();
+      print("-----------------------------------------------------------------------------");
+      print("Something has been changed");
+      print("-----------------------------------------------------------------------------");
     });
   }
 
@@ -85,7 +159,7 @@ class _TimelineV2State extends State<TimelineV2> {
                     inActiveBarColor: Colors.grey,
                     inverted: false,
                     verticalGap: 30,
-                    activeIndex: 0,
+                    activeIndex: lastDone,
                     barThickness: 8,
                   ),
                 ],
